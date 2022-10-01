@@ -1,9 +1,16 @@
-import React from "react";
-import { Return } from "../../svg";
+import React, { useRef, useState } from "react";
+import { useClickOutside } from "../../helpers/useClickOutside";
+import { Return, Search } from "../../svg";
 
-export default function SearchMenu({ setShowSearchMenu }) {
+export default function SearchMenu({ setShowSearchMenu, color }) {
+  const searchInputRef = useRef(null);
+  const searchRef = useRef(null);
+  const [showIcon, setShowIcon] = useState(true);
+  useClickOutside(searchRef, () => {
+    setShowSearchMenu(false);
+  });
   return (
-    <div className="search_area">
+    <div ref={searchRef} className="header_left search_area scrollbar">
       <div className="search_wrap">
         <div className="header_logo ">
           <div
@@ -12,10 +19,32 @@ export default function SearchMenu({ setShowSearchMenu }) {
               setShowSearchMenu(false);
             }}
           >
-            <Return />
+            <Return color={color} />
           </div>
         </div>
-        <div className="search"></div>
+        <div
+          className="search"
+          onClick={() => {
+            searchInputRef.current.focus();
+          }}
+        >
+          {showIcon && (
+            <div>
+              <Search color={color} />
+            </div>
+          )}
+          <input
+            ref={searchInputRef}
+            type="text"
+            placeholder="Search Moments"
+            onFocus={() => {
+              setShowIcon(false);
+            }}
+            onBlur={() => {
+              setShowIcon(true);
+            }}
+          />
+        </div>
       </div>
     </div>
   );
