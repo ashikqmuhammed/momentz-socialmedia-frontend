@@ -4,17 +4,95 @@ import { useClickOutside } from "../../helpers/useClickOutside";
 import ImagePreview from "./ImagePreview";
 import EmojiPickerBackgrounds from "./EmojiPickerBackgrounds";
 import { Photo } from "../../svg";
+import PulseLoader from "react-spinners/PulseLoader";
+import { createPost } from "../../functions/post";
+import PostError from "./PostError";
+import dataUrlToBlob from "../../helpers/dataUrlToBlob";
+import { uploadImages } from "../../functions/uploadImages";
 
 export default function CreatePostPopup({ setCreatePostPopup, user }) {
   const [text, setText] = useState("");
-  const [showPrev, setShowPrev] = useState(true);
+  const [showPrev, setShowPrev] = useState(false);
+  const [images, setImages] = useState([]);
+  const [background, setBackground] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const popupRef = useRef(null);
-  useClickOutside(popupRef, () => setCreatePostPopup(true));
+  useClickOutside(popupRef, () => setCreatePostPopup(false));
+
+  const postSubmit = async () => {
+    if (background) {
+      setLoading(true);
+      const response = await createPost(
+        null,
+        background,
+        text,
+        null,
+        user.id,
+        user.token
+      );
+      setLoading(false);
+      if (response === "ok") {
+        setText("");
+        setBackground("");
+        setCreatePostPopup(false);
+      } else {
+        setError(response);
+      }
+    } else if (images && images.length) {
+      setLoading(true);
+      const blobImages = images.map((img) => {
+        return dataUrlToBlob(img);
+      });
+      const path = `${user.username}/post Images`;
+      let formData = new FormData();
+      formData.append("path", path);
+      blobImages.forEach((img) => {
+        formData.append("file", img);
+      });
+      const cloudinaryData = await uploadImages(formData, user.token);
+      const response = await createPost(
+        null,
+        null,
+        text,
+        cloudinaryData,
+        user.id,
+        user.token
+      );
+      setLoading(false);
+      if (response === "ok") {
+        setText("");
+        setCreatePostPopup(false);
+      } else {
+        setError(response);
+      }
+    } else if (text) {
+      setLoading(true);
+      const response = await createPost(
+        null,
+        null,
+        text,
+        null,
+        user.id,
+        user.token
+      );
+      setLoading(false);
+      if (response === "ok") {
+        setText("");
+        setCreatePostPopup(false);
+      } else {
+        setError(response);
+      }
+    } else {
+      console.log("nothing");
+    }
+  };
 
   return (
     <div className="blur">
       <div className="post_box" ref={popupRef}>
+        {error && <PostError error={error} setError={setError} />}
         <div className="box_header">
           <div
             className="small_circle"
@@ -31,6 +109,8 @@ export default function CreatePostPopup({ setCreatePostPopup, user }) {
               text={text}
               setText={setText}
               showPrev={showPrev}
+              background={background}
+              setBackground={setBackground}
             />
           </>
         ) : (
@@ -38,7 +118,10 @@ export default function CreatePostPopup({ setCreatePostPopup, user }) {
             user={user}
             text={text}
             setText={setText}
-            showPrev={showPrev}
+            images={images}
+            setImages={setImages}
+            setShowPrev={setShowPrev}
+            setError={setError}
           />
         )}
         <div
@@ -51,7 +134,15 @@ export default function CreatePostPopup({ setCreatePostPopup, user }) {
             <Photo color="#45bd62" />
           </div>
         </div>
-        <button className="post_button">Post</button>
+        <button
+          onClick={() => {
+            postSubmit();
+          }}
+          disabled={loading}
+          className="post_button"
+        >
+          {loading ? <PulseLoader color="#fff" size={5} /> : "Post"}
+        </button>
       </div>
     </div>
   );
