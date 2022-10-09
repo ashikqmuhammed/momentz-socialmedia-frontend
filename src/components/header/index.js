@@ -1,19 +1,20 @@
 import "./style.css";
 import React, { useRef, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   ArrowDown,
   Friends,
   FriendsActive,
   Home,
   HomeActive,
+  Messenger,
   Search,
 } from "../../svg";
 import SearchMenu from "./SearchMenu";
 import { useSelector } from "react-redux";
 import UserMenu from "./userMenu";
 
-export default function Header({ page }) {
+export default function Header({ page, setChat }) {
   const { user } = useSelector((user) => ({ ...user }));
   const color = "#65676b";
   const [showSearchMenu, setShowSearchMenu] = useState(false);
@@ -38,7 +39,11 @@ export default function Header({ page }) {
         </div>
       </div>
       {showSearchMenu && (
-        <SearchMenu color={color} setShowSearchMenu={setShowSearchMenu} />
+        <SearchMenu
+          color={color}
+          token={user.token}
+          setShowSearchMenu={setShowSearchMenu}
+        />
       )}
       <div className="header_middle">
         <Link
@@ -48,13 +53,21 @@ export default function Header({ page }) {
           {page === "home" ? <HomeActive /> : <Home color={color} />}
         </Link>
         <Link
-          to="/friends"
-          className={`middle_icon ${page === "friends" ? "active" : "hover1"}`}
+          to="/relations"
+          className={`middle_icon ${
+            page === "relations" ? "active" : "hover1"
+          }`}
         >
-          {page === "friends" ? <FriendsActive /> : <Friends color={color} />}
+          {page === "relations" ? <FriendsActive /> : <Friends color={color} />}
         </Link>
       </div>
       <div className="header_right">
+        <div
+          className="circle_icon hover1"
+          onClick={() => setChat((prev) => !prev)}
+        >
+          <Messenger />
+        </div>
         <Link
           to="/profile"
           className={`profile_link hover1 ${

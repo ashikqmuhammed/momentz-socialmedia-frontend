@@ -1,0 +1,55 @@
+.relations {
+  height: calc(100vh - 56px);
+  width: 100%;
+  margin-top: 56px;
+  display: grid;
+  color: var(--color-primary);
+}
+.relations_left {
+  background: var(--bg-primary);
+  box-shadow: 0 12px 12px var(--shadow-1);
+  padding: 10px;
+  position: fixed;
+  width: 360px;
+  height: 100%;
+}
+.relations_right {
+  background: var(--bg-secondary);
+  padding: 2rem;
+  position: absolute;
+  top: 56px;
+  left: 360px;
+  right: 0;
+  width: calc(100% - 360px);
+  min-height: calc(100vh - 56px);
+}
+.relations_left_wrap {
+  margin-top: 10px;
+}
+.relations_left_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.relations_left_header h3 {
+  font-size: 21px;
+}
+.relations_left .mmenu_item {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 70px;
+}
+.active_relations {
+  background: var(--bg-secondary);
+}
+.active_relations .small_circle {
+  background: #1876f2;
+}
+.active_relations i {
+  filter: invert(100%);
+}
+.active_relations .rArrow {
+  display: none;
+}

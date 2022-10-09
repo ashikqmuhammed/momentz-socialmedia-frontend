@@ -10,7 +10,11 @@ import PostError from "./PostError";
 import dataUrlToBlob from "../../helpers/dataUrlToBlob";
 import { uploadImages } from "../../functions/uploadImages";
 
-export default function CreatePostPopup({ setCreatePostPopup, user }) {
+export default function CreatePostPopup({
+  setCreatePostPopup,
+  user,
+  setNewPost,
+}) {
   const [text, setText] = useState("");
   const [showPrev, setShowPrev] = useState(false);
   const [images, setImages] = useState([]);
@@ -37,6 +41,7 @@ export default function CreatePostPopup({ setCreatePostPopup, user }) {
         setText("");
         setBackground("");
         setCreatePostPopup(false);
+        setNewPost((prev) => !prev);
       } else {
         setError(response);
       }
@@ -45,7 +50,7 @@ export default function CreatePostPopup({ setCreatePostPopup, user }) {
       const blobImages = images.map((img) => {
         return dataUrlToBlob(img);
       });
-      const path = `${user.username}/post Images`;
+      const path = `${user.username}/post_images`;
       let formData = new FormData();
       formData.append("path", path);
       blobImages.forEach((img) => {
@@ -64,6 +69,7 @@ export default function CreatePostPopup({ setCreatePostPopup, user }) {
       if (response === "ok") {
         setText("");
         setCreatePostPopup(false);
+        setNewPost((prev) => !prev);
       } else {
         setError(response);
       }
@@ -81,6 +87,7 @@ export default function CreatePostPopup({ setCreatePostPopup, user }) {
       if (response === "ok") {
         setText("");
         setCreatePostPopup(false);
+        setNewPost((prev) => !prev);
       } else {
         setError(response);
       }
