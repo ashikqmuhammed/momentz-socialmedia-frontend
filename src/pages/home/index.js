@@ -1,9 +1,8 @@
 import { useSelector } from "react-redux";
-import CreatePost from "../../components/createPost";
-import Header from "../../components/header";
-import HomeLeft from "../../components/homeLayout/HomeLeft";
-import HomeRight from "../../components/homeLayout/HomeRight";
-import Post from "../../components/post";
+import Header from "../../components/homeStructure/headerContainer";
+import LeftBar from "../../components/homeStructure/leftBarContainer/LeftBar";
+import RightBar from "../../components/homeStructure/rightBarContainer/RightBar";
+import FeedContainer from "../../components/pageContainers/feedContainer/FeedContainer";
 import "./style.css";
 
 export default function Home({ setCreatePostPopup, posts, setChat }) {
@@ -11,16 +10,14 @@ export default function Home({ setCreatePostPopup, posts, setChat }) {
   return (
     <div className="home">
       <Header page="home" setChat={setChat} />
-      <HomeLeft />
-      <div className="home_middle">
-        <CreatePost user={user} setCreatePostPopup={setCreatePostPopup} />
-        <div className="posts">
-          {posts.map((post) => {
-            return <Post key={post._id} post={post} />;
-          })}
-        </div>
-      </div>
-      <HomeRight />
+      <LeftBar />
+      <FeedContainer
+        posts={posts}
+        user={user}
+        setCreatePostPopup={setCreatePostPopup}
+      />
+
+      <RightBar />
     </div>
   );
 }

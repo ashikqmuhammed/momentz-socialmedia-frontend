@@ -1,0 +1,33 @@
+.page_container {
+  position: fixed;
+  margin-top: 80px;
+  left: 336px;
+  right: 336px;
+  /* height: calc(100vh - 80px);
+    width: calc(100vh - 336px); */
+  overflow-y: auto;
+  color: var(--color-primary);
+  user-select: none;
+  background-color: var(--bg-primary);
+  background-size: 400% 400%;
+  display: flex;
+  flex-direction: column;
+  width: inherit;
+  height: 100%;
+  z-index: 999999999;
+}
+.home_wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.posts_wrapper {
+  margin-top: 28px;
+  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  /* transform: translateX(-50%); */
+}

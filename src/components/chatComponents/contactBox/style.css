@@ -1,0 +1,34 @@
+.contactBox {
+  width: 35%;
+  position: relative;
+  /* background-color: var(--bg-third); */
+  /* border-radius: 10px 0px 0px 10px; */
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px 0 0 0;
+}
+.header {
+  padding: 20px;
+  /* background-color: var(--bg-primary); */
+  border-radius: 10px 0 0 0;
+}
+.header .search input::placeholder {
+  transform: translateY(1px);
+}
+.chat_body {
+  height: 547px;
+  padding: 5px;
+  gap: 10px;
+  overflow-y: auto;
+  margin-bottom: 100px;
+  padding: 10px;
+}
+.contact {
+  background-color: var(--bg-primary);
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}

@@ -1,39 +1,8 @@
-.home {
-  min-height: 100vh;
-  background: var(--bg-secondary);
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+@media all and (max-width: 768px) and (min-width: 481px) {
 }
-.home_left {
-  position: fixed;
-  margin-top: 58px;
-  left: 6px;
-  height: 100vh;
-  width: 22vw;
-  overflow-y: auto;
-  color: var(--color-primary);
-  padding: 15px 0;
-  padding-bottom: 5rem;
-  user-select: none;
-  background-color: var(--blue-color);
+@media all and (min-width: 769px) {
 }
-.home_right {
-  position: fixed;
-  margin-top: 58px;
-  right: 6px;
-  top: 0;
-  height: 100vh;
-  width: 22vw;
-  overflow-y: auto;
-  color: var(--color-primary);
-  padding: 15px 0;
-  padding-bottom: 5rem;
-  user-select: none;
-  background-color: var(--blue-color);
+@media all and (max-width: 768px) {
 }
-.home_middle {
-  margin-top: 75px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+@media all and (max-width: 480px) and (min-width: 320px) {
 }

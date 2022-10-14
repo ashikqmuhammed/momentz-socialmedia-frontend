@@ -1,0 +1,62 @@
+.chatBox {
+  width: 65%;
+  border-radius: 0 20px 20px 0;
+}
+.noSelectedChat {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 20px 20px 0;
+  background-color: var(--blue-color);
+}
+.noSelectedChat div {
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 10px;
+  background-color: var(--bg-primary);
+  padding: 5px;
+}
+.chat_box_wrap {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 20px 20px 0;
+  background-color: #827f84df;
+}
+.chat_text_box {
+  position: absolute;
+  bottom: 29px;
+  left: 20px;
+  right: 25px;
+  height: 44px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.chat_text_box input {
+  background-color: transparent;
+  width: 80%;
+  height: 30px;
+  border-style: none;
+  outline: none;
+}
+.chat_box_wrap svg {
+  width: 29px;
+  height: 29px;
+  fill: var(--bg-primary);
+}

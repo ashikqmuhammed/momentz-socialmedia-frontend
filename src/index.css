@@ -5,11 +5,12 @@
 }
 body {
   font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-  background: #f0f2f5;
+  background: var(--bg-primary);
+  overflow: hidden;
 }
-html {
+/* html {
   overflow-y: scroll;
-}
+} */
 a {
   text-decoration: none;
   color: inherit;

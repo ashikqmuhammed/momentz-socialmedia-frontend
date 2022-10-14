@@ -1,16 +1,16 @@
 .posts {
   margin-top: 1rem;
-  width: 100%;
+  width: 95%;
 }
 .post {
   position: relative;
   width: 100%;
   background: var(--bg-primary);
-  border-radius: 10px;
-  box-shadow: 0 1px 2px var(--shadow-1);
+  border-radius: 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   user-select: none;
   color: var(--color-primary);
-  margin-bottom: 10px;
+  margin-bottom: 120px;
 }
 .post_header {
   display: flex;
@@ -26,7 +26,7 @@
 .post_header_left img {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: 35%;
   object-fit: cover;
 }
 .header_col {
@@ -61,12 +61,20 @@
   font-size: 22px;
   background-repeat: no-repeat;
   background-size: cover;
+  border-radius: 20px;
 }
 .post_text {
   padding: 0 15px 10px 15px;
 }
 
 /*-----------------------------GRID IMAGES----------------*/
+.grid_1 img,
+.grid_2 img,
+.grid_3 img,
+.grid_4 img,
+.grid_5 img {
+  border-radius: 20px;
+}
 .grid_1 img {
   width: 100%;
   height: 610px;
@@ -260,4 +268,56 @@
   justify-content: center;
   cursor: pointer;
   color: #fff;
+}
+
+.post_actions {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 8px 5px 8px;
+  border-top: 1px solid var(--bg-third);
+  border-bottom: 1px solid var(--bg-third);
+  margin: 0 10px;
+  padding: 5px 0;
+}
+.post_action {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 7px 0;
+  border-radius: 5px;
+}
+.post_action span {
+  color: var(--color-secondary);
+  font-weight: 600;
+  font-size: 14px;
+  transform: translateY(-0.5px);
+}
+.reacts_popup {
+  display: flex;
+  align-items: flex-start;
+  position: absolute;
+
+  top: -3.4rem;
+  left: 10px;
+  background: var(--bg-primary);
+  padding: 1px 5px;
+  border-radius: 50px;
+  gap: 8px;
+  box-shadow: 0 1px 2px var(--shadow-1);
+}
+.react {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.react:hover {
+  transform: scale(1.2);
+}
+.react img {
+  width: 42px;
+  height: 42px;
+  object-fit: cover;
 }

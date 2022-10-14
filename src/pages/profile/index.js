@@ -3,7 +3,6 @@ import axios from "axios";
 import { useEffect, useReducer } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import Header from "../../components/header";
 import { profileReducer } from "../../functions/reducers";
 import Cover from "./Cover";
 import ProfileMenu from "./ProfileMenu";
@@ -12,6 +11,7 @@ import CreatePost from "../../components/createPost";
 import Post from "../../components/post";
 import Photos from "./Photos";
 import Friends from "./Friends";
+import Header from "../../components/homeStructure/headerContainer";
 
 export default function Profile({ setCreatePostPopup, setNewPost }) {
   const { username } = useParams();

@@ -1,10 +1,1 @@
-.chat {
-  position: fixed;
-  height: 80vh;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70%;
-  border-radius: 10px;
-  display: flex;
-}
+

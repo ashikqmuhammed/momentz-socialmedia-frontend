@@ -1,0 +1,74 @@
+.right_bar_container {
+  position: fixed;
+  margin-top: 80px;
+  right: 6px;
+  height: calc(100vh - 80px);
+  width: 290px;
+  overflow-y: auto;
+  color: var(--color-primary);
+  user-select: none;
+  background-color: var(--bg-primary);
+  background-size: 400% 400%;
+  display: flex;
+  flex-direction: column;
+}
+.right_wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0px;
+}
+.right_bar_container .right_wrapper div {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 20px;
+  position: relative;
+  flex-shrink: 0;
+  width: 240px;
+}
+.right_bar_container .right_wrapper div:nth-child(1) {
+  margin-top: 20px;
+  height: 90px;
+}
+.right_bar_container .right_wrapper div:nth-child(2) {
+  height: 270px;
+}
+.right_bar_container .right_wrapper div:nth-child(3) {
+  height: 150px;
+}
+
+.tabs {
+  width: 100%;
+  height: 88px;
+  background-color: var(--bg-primary);
+  position: relative;
+  display: flex;
+  margin-top: 5px;
+  align-items: center;
+  flex-shrink: 0;
+}
+.tabs svg {
+  width: 20px;
+  fill: rgb(118, 114, 114);
+  margin-left: 20px;
+}
+.tabs span {
+  font-family: inherit;
+  font-size: 20px;
+  transform: translateY(3px);
+  margin-left: 20px;
+  font-weight: 900;
+  color: rgb(118, 114, 114);
+}
+.active_tab {
+  border-bottom: 5px solid var(--blue-color);
+}
+.active_tab span {
+  color: var(--blue-color);
+}
+.active_tab svg {
+  fill: var(--blue-color);
+}

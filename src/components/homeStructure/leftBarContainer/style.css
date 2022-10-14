@@ -1,0 +1,97 @@
+.left_bar_container {
+  position: fixed;
+  margin-top: 80px;
+  left: 6px;
+  height: calc(100vh - 80px);
+  width: 290px;
+  overflow-y: auto;
+  color: var(--color-primary);
+  user-select: none;
+  background-color: var(--bg-primary);
+  /* box-shadow: 0 12px 12px var(--shadow-1); */
+  /* background: linear-gradient(
+      -45deg,
+      #3f51b1 0%,
+      #5a55ae 13%,
+      #7b5fac 25%,
+      #8f6aae 38%,
+      #a86aa4 50%,
+      #cc6b8e 62%,
+      #f18271 75%,
+      #f3a469 87%,
+      #f7c978 100%
+    );
+    animation: animate 7.5s ease-in-out infinite; */
+  background-size: 400% 400%;
+  display: flex;
+  flex-direction: column;
+}
+.left_wrapper {
+  width: 90%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0px;
+}
+.left_bar_container .left_wrapper div {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 20px;
+  position: relative;
+  flex-shrink: 0;
+  width: 240px;
+}
+.left_bar_container .left_wrapper div:nth-child(1) {
+  margin-top: 20px;
+  height: 90px;
+}
+.left_bar_container .left_wrapper div:nth-child(2) {
+  height: 280px;
+}
+.left_bar_container .left_wrapper div:nth-child(3) {
+  height: 130px;
+}
+
+.tabs {
+  width: 80%;
+  height: 88px;
+  position: relative;
+  display: flex;
+  margin-top: 5px;
+  align-items: center;
+  flex-shrink: 0;
+}
+.tabs:first-of-type {
+  border-radius: 20px 20px 0 0;
+}
+.tabs:last-of-type {
+  border-radius: 0 0 20px 20px;
+}
+.tabs svg {
+  width: 20px;
+  fill: rgb(118, 114, 114);
+  margin-left: 20px;
+}
+.tabs span {
+  font-family: inherit;
+  font-size: 20px;
+  transform: translateY(3px);
+  margin-left: 20px;
+  font-weight: 900;
+  color: rgb(118, 114, 114);
+}
+.active {
+  border-bottom: 5px solid var(--blue-color);
+  background-color: var(--bg-secondary);
+}
+.active span {
+  color: var(--blue-color) !important;
+}
+.active svg {
+  fill: var(--blue-color) !important;
+}
+.active:hover {
+  background: var(--bg-secondary);
+}

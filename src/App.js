@@ -35,8 +35,10 @@ function App() {
   const { user } = useSelector((state) => ({ ...state }));
 
   useEffect(() => {
-    getAllPosts();
-  }, [newPost]);
+    if (user || newPost) {
+      getAllPosts();
+    }
+  }, [newPost, user]);
 
   const getAllPosts = async () => {
     try {
@@ -58,7 +60,7 @@ function App() {
     }
   };
   return (
-    <div>
+    <div className="app">
       {createPostPopup && (
         <CreatePostPopup
           setNewPost={setNewPost}
@@ -101,6 +103,7 @@ function App() {
             }
             exact
           />
+          <Route path="/chat" element={<Chat />} exact />
           <Route
             path="/relations"
             element={<Relations setChat={setChat} />}

@@ -2,8 +2,14 @@ import "./style.css";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import { Dots } from "../../svg";
+import ReactsPopup from "./ReactsPopup";
+import { useState } from "react";
+import CreateComment from "./CreateComment";
+import { useSelector } from "react-redux";
 
 export default function Post({ post }) {
+  const { user } = useSelector((state) => ({ ...state }));
+  const [visible, setVisible] = useState(false);
   return (
     <div className="post">
       <div className="post_header">
@@ -73,6 +79,33 @@ export default function Post({ post }) {
           )}
         </>
       )}
+      <div className="post_actions">
+        {visible && <ReactsPopup visible={visible} setVisible={setVisible} />}
+        <div
+          className="post_action hover1"
+          onMouseOver={() => {
+            setTimeout(() => {
+              setVisible(true);
+            }, 500);
+          }}
+          onMouseLeave={() => {
+            setTimeout(() => {
+              setVisible(false);
+            }, 500);
+          }}
+        >
+          <i className="like_icon"></i>
+          <span>Like</span>
+        </div>
+        <div className="post_action hover1">
+          <i className="comment_icon"></i>
+          <span>Comment</span>
+        </div>
+      </div>
+      <div className="comments_wrap">
+        <div className="comments_order"></div>
+        <CreateComment user={user} />
+      </div>
     </div>
   );
 }
