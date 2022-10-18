@@ -18,7 +18,7 @@ export default function ChatBox({ selectedChat }) {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io("ws://localhost:8900");
+    socket.current = io("https://agreeable-bat-wetsuit.cyclic.app");
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
