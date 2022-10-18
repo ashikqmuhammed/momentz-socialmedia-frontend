@@ -1,6 +1,7 @@
 .posts {
   margin-top: 1rem;
   width: 95%;
+  scroll-behavior: smooth;
 }
 .post {
   position: relative;

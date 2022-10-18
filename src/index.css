@@ -8,9 +8,9 @@ body {
   background: var(--bg-primary);
   overflow: hidden;
 }
-/* html {
-  overflow-y: scroll;
-} */
+html {
+  scroll-behavior: smooth;
+}
 a {
   text-decoration: none;
   color: inherit;

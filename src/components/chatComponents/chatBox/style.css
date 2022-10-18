@@ -1,6 +1,7 @@
 .chatBox {
   width: 65%;
   border-radius: 0 20px 20px 0;
+  position: relative;
 }
 .noSelectedChat {
   position: relative;
@@ -24,12 +25,11 @@
   padding: 5px;
 }
 .chat_box_wrap {
-  position: relative;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  height: 100%;
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  right: 10px;
+  left: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,7 +38,7 @@
 }
 .chat_text_box {
   position: absolute;
-  bottom: 29px;
+  bottom: 22px;
   left: 20px;
   right: 25px;
   height: 44px;
@@ -59,4 +59,80 @@
   width: 29px;
   height: 29px;
   fill: var(--bg-primary);
+  cursor: pointer;
 }
+.chat_box_wrap svg:hover {
+  fill: rgb(57, 54, 54);
+}
+.chat_box_header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background-color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: var(--bg-primary);
+}
+.chat_box_header img {
+  border-radius: 50%;
+  width: 47px;
+  margin-left: 14px;
+  transform: translateY(-4px);
+}
+.chat_box_header h4 {
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 600;
+  color: #686868;
+  transform: translateY(-4px);
+}
+.chat_box_header div {
+  position: absolute;
+  bottom: 6px;
+  left: 81px;
+  font-size: 14px;
+  color: #cac7c7;
+}
+.message_container {
+  position: absolute;
+  top: 60px;
+  height: 402px;
+  width: 100%;
+  background: transparent;
+  overflow-y: auto;
+  padding: 10px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+.sending {
+  display: flex;
+  justify-content: flex-end;
+}
+.receiving {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.sending_receiving_inner {
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  max-width: max-content;
+  overflow: hidden;
+  max-height: 360px;
+
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 5px;
+}
+.sending_inner {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.receiving_inner {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+/* .messages_loading {
+  width: 100px;
+} */
