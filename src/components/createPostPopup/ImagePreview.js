@@ -25,7 +25,7 @@ export default function ImagePreview({
         );
         files = files.filter((file) => img.name !== file.name);
         return;
-      } else if (img.size > 1024 * 1024) {
+      } else if (img.size > 1024 * 1024 * 5) {
         setError(`${img.name} size is too large max 5mb allowed.`);
         files = files.filter((file) => img.name !== file.name);
         return;

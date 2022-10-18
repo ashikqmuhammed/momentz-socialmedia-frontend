@@ -38,17 +38,18 @@
 
 .create_post {
   background: var(--bg-primary);
-  border-radius: 20px;
-  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
-  margin-top: 1.1rem;
-  width: 95%;
+  margin-top: 0.1rem;
+  width: 100%;
   cursor: pointer;
+  padding: 20px;
 }
 .create_post_header {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 10px 17px 10px 15px;
+  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+  border-radius: 20px;
 }
 .create_post_header img {
   width: 40px;

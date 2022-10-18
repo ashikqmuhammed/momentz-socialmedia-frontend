@@ -9,38 +9,62 @@ import axios from "axios";
 export default function ChatBox({ selectedChat }) {
   const { user } = useSelector((state) => ({ ...state }));
   const [sendLoading, setSendLoading] = useState(false);
+  const [sendError, setSendError] = useState(false);
   const [messagesLoading, setMessagesLoading] = useState(false);
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const scrollRef = useRef();
   const socket = useRef();
-  // useEffect(() => {
-  //   if (selectedChat.id) {
-  //     socket.current = io(process.env.REACT_APP_BACKEND_URL);
-  //     socket.current.emit("add-user", selectedChat.id);
-  //   }
-  // }, [selectedChat]);
+
+  useEffect(() => {
+    socket.current = io("ws://localhost:8900");
+    socket.current.on("getMessage", (data) => {
+      setArrivalMessage({
+        sender: data.senderId,
+        text: data.text,
+        createdAt: Date.now(),
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    arrivalMessage &&
+      selectedChat.id &&
+      setMessages((prev) => {
+        return [...prev, arrivalMessage];
+      });
+  }, [arrivalMessage, selectedChat]);
 
   const messageContainerRef = useRef(null);
 
   const sendMessage = async () => {
-    setSendLoading(true);
-    const newSavedMessage = await messenger(
-      selectedChat.id,
-      message,
-      user.token
-    );
-    console.log(newSavedMessage);
-    setMessages((prev) => {
-      return [...prev, newSavedMessage];
+    //socket messaging
+    console.log({
+      senderId: user.id,
+      receiverId: selectedChat.id,
+      text: message,
     });
-    // socket.current.emit("send-msg", {
-    //   to: selectedChat.id,
-    //   from: user.id,
-    //   message: message,
-    // });
-    setSendLoading(false);
+    socket.current.emit("sendMessage", {
+      senderId: user.id,
+      receiverId: selectedChat.id,
+      text: message,
+    });
+    try {
+      setSendLoading(true);
+      const newSavedMessage = await messenger(
+        selectedChat.id,
+        message,
+        user.token
+      );
+      console.log(newSavedMessage);
+      setMessages((prev) => {
+        return [...prev, newSavedMessage];
+      });
+      setSendLoading(false);
+    } catch (error) {
+      setSendError(false);
+    }
   };
   const getMessages = async () => {
     try {
@@ -54,35 +78,36 @@ export default function ChatBox({ selectedChat }) {
           },
         }
       );
+      console.log(data, selectedChat.id);
+      if (data) {
+        setMessages(data);
+      } else {
+        setMessages([]);
+      }
 
-      setMessages(data);
       setMessagesLoading(false);
     } catch (error) {
       setMessagesLoading(false);
     }
   };
   useEffect(() => {
-    if (socket.current) {
-      socket.current.on("msg-receive", (msg) => {
-        setArrivalMessage(msg);
-      });
-    }
-  }, []);
-  useEffect(() => {
-    if (arrivalMessage) {
-      getMessages();
-    }
-  }, [arrivalMessage]);
-  useEffect(() => {
     scrollRef.current?.scrollIntoView({ behaviour: "smooth" });
   }, [messages]);
   useEffect(() => {
     getMessages();
   }, [selectedChat]);
-  // useEffect(() => {
-  //   messageContainerRef.current.scrollTop =
-  //     messageContainerRef.current.scrollHeight;
-  // }, []);
+
+  useEffect(() => {
+    socket.current.emit("addUser", user.id);
+    socket.current.on("getUsers", (users) => console.log(users));
+  }, [user]);
+
+  useEffect(() => {
+    if (selectedChat.id) {
+      getMessages();
+    }
+  }, [selectedChat]);
+
   return (
     <div className="chatBox">
       {!selectedChat.id && (

@@ -1,17 +1,20 @@
 .posts {
-  margin-top: 1rem;
-  width: 95%;
+  /* margin-top: 1rem; */
+  width: 100%;
   scroll-behavior: smooth;
+  padding: 20px 20px 71px 20px;
 }
+
 .post {
   position: relative;
   width: 100%;
   background: var(--bg-primary);
   border-radius: 20px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+  -webkit-user-select: none;
   user-select: none;
   color: var(--color-primary);
-  margin-bottom: 120px;
+  margin-bottom: 30px;
 }
 .post_header {
   display: flex;

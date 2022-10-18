@@ -36,21 +36,23 @@
   gap: 20px;
   flex-shrink: 0px;
 }
-.left_bar_container .left_wrapper div {
+.left_bar_container .left_wrapper .first,
+.second,
+.third {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 20px;
   position: relative;
   flex-shrink: 0;
   width: 240px;
 }
-.left_bar_container .left_wrapper div:nth-child(1) {
+.left_bar_container .left_wrapper .first {
   margin-top: 20px;
   height: 90px;
 }
-.left_bar_container .left_wrapper div:nth-child(2) {
+.left_bar_container .left_wrapper .second {
   height: 280px;
 }
-.left_bar_container .left_wrapper div:nth-child(3) {
+.left_bar_container .left_wrapper .third {
   height: 130px;
 }
 
@@ -94,4 +96,32 @@
 }
 .active:hover {
   background: var(--bg-secondary);
+}
+.profile_box_left {
+  display: flex;
+  align-items: center;
+  /* width: 100%; */
+  height: 100%;
+}
+.profile_box_left img {
+  width: 60px;
+  height: 65%;
+  border-radius: 35%;
+  margin: 0 10px 0 11px;
+  /* transform: translateY(2px); */
+}
+.name_profession_wrapper {
+  width: 100%;
+}
+.name_profession_wrapper .name {
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 600;
+  color: dimgrey;
+  transform: translateY(-4px);
+}
+.name_profession_wrapper .profession {
+  font-family: inherit;
+  font-size: 15px;
+  color: grey;
 }

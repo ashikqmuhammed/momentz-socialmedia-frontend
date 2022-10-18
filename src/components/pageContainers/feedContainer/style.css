@@ -1,8 +1,8 @@
 .page_container {
   position: fixed;
   margin-top: 80px;
-  left: 336px;
-  right: 336px;
+  left: 290px;
+  right: 290px;
   /* height: calc(100vh - 80px);
     width: calc(100vh - 336px); */
   overflow-y: auto;
@@ -16,6 +16,22 @@
   height: 100%;
   z-index: 999999999;
 }
+/* .chat_container {
+  position: fixed;
+  margin-top: 80px;
+
+  height: calc(100vh - 80px);
+  color: var(--color-primary);
+  -webkit-user-select: none;
+  user-select: none;
+  background-size: 400% 400%;
+  display: flex;
+  flex-direction: column;
+  width: inherit;
+  z-index: 999999999;
+  padding: 25px;
+  border-radius: 20px;
+} */
 .home_wrapper {
   position: relative;
   width: 100%;
@@ -28,6 +44,5 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   /* transform: translateX(-50%); */
 }

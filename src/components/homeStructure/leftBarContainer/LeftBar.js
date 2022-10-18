@@ -1,5 +1,6 @@
 import "./style.css";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Tabs({ title, link, pathD, viewBox, page }) {
   return (
@@ -12,6 +13,7 @@ function Tabs({ title, link, pathD, viewBox, page }) {
   );
 }
 export default function LeftBar({ page }) {
+  const { user } = useSelector((state) => ({ ...state }));
   const tabs = [
     {
       title: "Feed",
@@ -38,8 +40,17 @@ export default function LeftBar({ page }) {
   return (
     <div className="left_bar_container">
       <div className="left_wrapper">
-        <div></div>
-        <div>
+        <div className="first">
+          <NavLink to="/profile" className="profile_box_left">
+            <img src={user?.picture} alt="" />
+            <div className="name_profession_wrapper">
+              <div className="name">{`${user?.first_name} ${user?.last_name}`}</div>
+              <div className="profession">Calicut, India</div>
+            </div>
+          </NavLink>
+        </div>
+
+        <div className="second">
           {tabs.map((tab, i) => (
             <Tabs
               key={i}
@@ -51,7 +62,7 @@ export default function LeftBar({ page }) {
             />
           ))}
         </div>
-        <div></div>
+        <div className="third"></div>
       </div>
 
       {/* {tabs.map((tab, i) => (
