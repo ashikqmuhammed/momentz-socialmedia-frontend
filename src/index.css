@@ -109,13 +109,15 @@ a {
 }
 .active span,
 .active .name {
-  color: var(--blue-color) !important;
+  color: black !important;
+  font-weight: 900;
 }
 .active svg {
-  fill: var(--blue-color) !important;
+  fill: black !important;
+  height: 30px !important;
 }
 .active img {
-  border: 2px solid var(--blue-color);
+  border: 2px solid black;
 }
 /* .active:hover {
   background: var(--bg-secondary);

@@ -11,6 +11,8 @@ import axios from "axios";
 import Chat from "./pages/chat";
 import Relations from "./pages/relations";
 import Gallery from "./pages/gallery/Gallery";
+import Followers from "./pages/followers/Followers";
+import Following from "./pages/following/Following";
 
 function postFetchReducer(state, action) {
   switch (action.type) {
@@ -105,7 +107,10 @@ function App() {
             exact
           />
           <Route path="/chat" element={<Chat />} exact />
+          <Route path="/followers" element={<Followers />} exact />
+          <Route path="/following" element={<Following />} exact />
           <Route path="/gallery" element={<Gallery />} exact />
+
           <Route
             path="/relations"
             element={<Relations setChat={setChat} />}

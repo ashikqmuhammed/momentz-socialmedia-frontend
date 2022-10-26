@@ -1,0 +1,55 @@
+.follower_box {
+  /* height: 100px; */
+  width: 45%;
+  border-radius: 20px;
+  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+  display: flex;
+  align-items: center;
+}
+.follower_pic_wrap {
+  padding: 10px;
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.follower_pic_wrap img {
+  width: 80px;
+  border-radius: inherit;
+}
+.follower_box_name {
+  font-size: 17px;
+  font-weight: 600;
+  font-family: inherit;
+}
+.follower_action_buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.action_wrapper {
+  margin-top: 3px;
+  display: flex;
+  gap: 4px;
+}
+.action_wrapper button {
+  width: 80px;
+  height: 25px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+.action_wrapper button:first-of-type {
+  background: black;
+  color: white;
+  border: none;
+}
+.action_wrapper button:last-of-type {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+.action_link_box {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}

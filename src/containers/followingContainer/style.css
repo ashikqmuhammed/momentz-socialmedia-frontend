@@ -1,0 +1,26 @@
+.following_container {
+  position: fixed;
+  margin-top: 80px;
+  left: 290px;
+  right: 290px;
+  /* height: calc(100vh - 80px);
+      width: calc(100vh - 336px); */
+  overflow-y: auto;
+  color: var(--color-primary);
+  user-select: none;
+  background-color: var(--bg-primary);
+  background-size: 400% 400%;
+  display: flex;
+  flex-direction: column;
+  width: inherit;
+  height: 100%;
+  z-index: 999999999;
+}
+.following_wrapper {
+  padding: 45px 20px 120px 20px;
+  display: flex;
+  /* flex-direction: column; */
+  gap: 10px;
+  flex-wrap: wrap;
+  /* justify-content: space-evenly; */
+}
