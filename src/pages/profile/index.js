@@ -11,7 +11,10 @@ import CreatePost from "../../components/createPost";
 import Post from "../../components/post";
 import Photos from "./Photos";
 import Friends from "./Friends";
-import Header from "../../components/homeStructure/headerContainer";
+import ProfileContainer from "../../containers/profileContainer/ProfileContainer";
+import Header from "../../containers/homeStructure/headerContainer";
+import LeftBar from "../../containers/homeStructure/leftBarContainer/LeftBar";
+import RightBar from "../../containers/homeStructure/rightBarContainer/RightBar";
 
 export default function Profile({ setCreatePostPopup, setNewPost }) {
   const { username } = useParams();
@@ -62,46 +65,55 @@ export default function Profile({ setCreatePostPopup, setNewPost }) {
     }
   };
 
+  // return (
+  //   <div className="profile">
+  //     <Header page="profile" />
+  //     <div className="profile_top">
+  //       <div className="profile_container">
+  //         <Cover cover={profile.cover} visitor={visitor} />
+  //         <ProfilePictureInfos profile={profile} visitor={visitor} />
+  //         <ProfileMenu visitor={visitor} />
+  //       </div>
+  //     </div>
+  //     <div className="profile_bottom">
+  //       <div className="profile_container">
+  //         <div className="bottom_container">
+  //           <div className="profile_grid">
+  //             <div className="profile_left">
+  //               <Photos token={user.token} username={userName} />
+  //               <Friends friends={profile.friends} />
+  //             </div>
+  //             <div className="profile_right">
+  //               {!visitor && (
+  //                 <CreatePost
+  //                   user={user}
+  //                   setCreatePostPopup={setCreatePostPopup}
+  //                   setNewPost={setNewPost}
+  //                 />
+  //               )}
+  //               <div className="posts">
+  //                 {profile.posts && profile.posts.length ? (
+  //                   profile.posts.map((post) => (
+  //                     <Post post={post} user={user} key={post._id} />
+  //                   ))
+  //                 ) : (
+  //                   <div className="no_posts">No posts available</div>
+  //                 )}
+  //               </div>
+  //             </div>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
+
   return (
-    <div className="profile">
+    <div>
       <Header page="profile" />
-      <div className="profile_top">
-        <div className="profile_container">
-          <Cover cover={profile.cover} visitor={visitor} />
-          <ProfilePictureInfos profile={profile} visitor={visitor} />
-          <ProfileMenu visitor={visitor} />
-        </div>
-      </div>
-      <div className="profile_bottom">
-        <div className="profile_container">
-          <div className="bottom_container">
-            <div className="profile_grid">
-              <div className="profile_left">
-                <Photos token={user.token} username={userName} />
-                <Friends friends={profile.friends} />
-              </div>
-              <div className="profile_right">
-                {!visitor && (
-                  <CreatePost
-                    user={user}
-                    setCreatePostPopup={setCreatePostPopup}
-                    setNewPost={setNewPost}
-                  />
-                )}
-                <div className="posts">
-                  {profile.posts && profile.posts.length ? (
-                    profile.posts.map((post) => (
-                      <Post post={post} user={user} key={post._id} />
-                    ))
-                  ) : (
-                    <div className="no_posts">No posts available</div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <LeftBar />
+      <ProfileContainer />
+      <RightBar />
     </div>
   );
 }

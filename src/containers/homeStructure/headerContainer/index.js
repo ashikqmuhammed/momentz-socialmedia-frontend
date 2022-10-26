@@ -2,6 +2,7 @@ import "./style.css";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import UserMenu from "./UserMenu";
 import { Search } from "../../../svg";
 
 export default function Header({ page, setChat }) {
@@ -33,14 +34,7 @@ export default function Header({ page, setChat }) {
           <Search color={color} />
           <input type="text" placeholder="Search Moments" />
         </div>
-        <Link
-          to="/profile"
-          className={`profile_link hover1 ${
-            page === "profile" ? "active_link" : ""
-          }`}
-        >
-          <img src={user?.picture} alt="profile pic" />
-        </Link>
+
         {!open && (
           <svg
             className="hamburger"
@@ -66,66 +60,18 @@ export default function Header({ page, setChat }) {
           </svg>
         )}
       </div>
-      {/* {showSearchMenu && (
-        <SearchMenu
-          color={color}
-          token={user.token}
-          setShowSearchMenu={setShowSearchMenu}
-        />
-      )} */}
-      {/* <div className="header_middle">
-        <div
-          className="search"
-          onClick={() => {
-            setShowSearchMenu(true);
-          }}
-        >
-          <Search color={color} />
-          <input type="text" placeholder="Search Moments" />
+      <div className="header_right">
+        <div className="open_user_menu_large">
+          <img
+            src={user?.picture}
+            alt="profile pic"
+            onClick={() => {
+              setShowUserMenu((prev) => !prev);
+            }}
+          />
+          {showUserMenu && <UserMenu />}
         </div>
-        <Link
-          to="/"
-          className={`middle_icon ${page === "home" ? "active" : "hover1"}`}
-        >
-          {page === "home" ? <HomeActive /> : <Home color={color} />}
-        </Link>
-        <Link
-          to="/relations"
-          className={`middle_icon ${
-            page === "relations" ? "active" : "hover1"
-          }`}
-        >
-          {page === "relations" ? <FriendsActive /> : <Friends color={color} />}
-        </Link>
-      </div> */}
-      {/* <div className="header_right">
-        <div
-          className="circle_icon hover1"
-          onClick={() => setChat((prev) => !prev)}
-        >
-          <Messenger />
-        </div>
-        <Link
-          to="/profile"
-          className={`profile_link hover1 ${
-            page === "profile" ? "active_link" : ""
-          }`}
-        >
-          <img src={user?.picture} alt="profile pic" />
-          <span>{user?.first_name}</span>
-        </Link>
-        <div
-          className={`circle_icon hover1 ${showUserMenu && "active_header"}`}
-          onClick={() => {
-            setShowUserMenu((prev) => !prev);
-          }}
-        >
-          <div>
-            <ArrowDown />
-          </div>
-        </div>
-        {showUserMenu && <UserMenu />}
-      </div> */}
+      </div>
     </header>
   );
 }

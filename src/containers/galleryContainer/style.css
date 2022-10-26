@@ -1,0 +1,25 @@
+.gallery_container {
+  position: fixed;
+  margin-top: 80px;
+  left: 290px;
+  right: 290px;
+  /* height: calc(100vh - 80px);
+      width: calc(100vh - 336px); */
+  overflow-y: auto;
+  color: var(--color-primary);
+  user-select: none;
+  background-color: var(--bg-primary);
+  background-size: 400% 400%;
+  display: flex;
+  flex-direction: column;
+  width: inherit;
+  height: 100%;
+  z-index: 999999999;
+}
+.gallery_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px;
+  margin-bottom: 85px;
+}

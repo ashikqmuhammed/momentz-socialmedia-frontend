@@ -1,17 +1,15 @@
-
-import ChatContainer from "../../containers/chatContainer/ChatContainer";
+import "./style.css";
 import Header from "../../containers/homeStructure/headerContainer";
 import LeftBar from "../../containers/homeStructure/leftBarContainer/LeftBar";
 import RightBar from "../../containers/homeStructure/rightBarContainer/RightBar";
-import "./style.css";
+import GalleryContainer from "../../containers/galleryContainer/GalleryContainer";
 
-
-export default function Chat() {
+export default function Gallery() {
   return (
     <div>
-      <Header page="home" />
+      <Header />
       <LeftBar />
-      <ChatContainer />
+      <GalleryContainer />
       <RightBar />
     </div>
   );

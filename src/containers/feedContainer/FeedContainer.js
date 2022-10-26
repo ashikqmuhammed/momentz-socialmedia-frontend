@@ -1,10 +1,10 @@
+import CreatePost from "../../components/createPost";
+import Post from "../../components/post";
 import "./style.css";
-import CreatePost from "../../createPost";
-import Post from "../../post";
 
 export default function FeedContainer({ setCreatePostPopup, user, posts }) {
   return (
-    <div className="page_container scrollbar">
+    <div className="feed_container scrollbar">
       <div className="home_wrapper">
         <div className="posts_wrapper">
           <CreatePost user={user} setCreatePostPopup={setCreatePostPopup} />

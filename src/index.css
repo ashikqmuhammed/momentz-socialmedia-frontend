@@ -38,6 +38,8 @@ a {
   --shadow-inset: rgba(255, 255, 255, 0.5);
 }
 
+/* #ae275f */
+
 /*----Buttons----*/
 .blue_btn {
   border: none;
@@ -101,6 +103,23 @@ a {
   bottom: 0;
   z-index: 9999999999;
 }
+.active {
+  /* border-bottom: 5px solid var(--blue-color); */
+  /* background-color: var(--bg-secondary); */
+}
+.active span,
+.active .name {
+  color: var(--blue-color) !important;
+}
+.active svg {
+  fill: var(--blue-color) !important;
+}
+.active img {
+  border: 2px solid var(--blue-color);
+}
+/* .active:hover {
+  background: var(--bg-secondary);
+} */
 
 /*----Buttons----*/
 

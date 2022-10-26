@@ -111,3 +111,23 @@ export function messagesReducer(state, action) {
       return state;
   }
 }
+
+export function galleryReducer(state, action) {
+  switch (action.type) {
+    case "GALLERY_REQUEST":
+      return { ...state, galleryLoading: true, galleryError: false };
+    case "GALLERY_SUCCESS":
+      return {
+        ...state,
+        galleryLoading: false,
+        galleryPosts: action.payload,
+        error: false,
+      };
+    case "GALLERY_ERROR":
+      return { ...state, galleryLoading: false, galleryError: true };
+
+    default:
+      return state;
+  }
+}
+

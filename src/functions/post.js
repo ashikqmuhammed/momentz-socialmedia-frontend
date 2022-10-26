@@ -29,3 +29,38 @@ export const createPost = async (
     return error.response.data.message;
   }
 };
+
+export const likePostFn = async (postId, token) => {
+  try {
+    await axios.put(
+      `${process.env.REACT_APP_BACKEND_URL}/like`,
+      {
+        postId,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return "ok";
+  } catch (error) {
+    return error.response.data.message;
+  }
+};
+
+export const galleryPostsFn = async (token) => {
+  try {
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/gallery-posts`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return { status: "ok", data };
+  } catch (error) {
+    return error.response.data.message;
+  }
+};

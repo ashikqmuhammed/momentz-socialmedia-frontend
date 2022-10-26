@@ -1,4 +1,4 @@
-.page_container {
+.feed_container {
   position: fixed;
   margin-top: 80px;
   left: 290px;
@@ -16,22 +16,7 @@
   height: 100%;
   z-index: 999999999;
 }
-/* .chat_container {
-  position: fixed;
-  margin-top: 80px;
 
-  height: calc(100vh - 80px);
-  color: var(--color-primary);
-  -webkit-user-select: none;
-  user-select: none;
-  background-size: 400% 400%;
-  display: flex;
-  flex-direction: column;
-  width: inherit;
-  z-index: 999999999;
-  padding: 25px;
-  border-radius: 20px;
-} */
 .home_wrapper {
   position: relative;
   width: 100%;

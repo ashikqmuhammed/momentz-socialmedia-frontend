@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
-import Header from "../../components/homeStructure/headerContainer";
-import LeftBar from "../../components/homeStructure/leftBarContainer/LeftBar";
-import RightBar from "../../components/homeStructure/rightBarContainer/RightBar";
-import FeedContainer from "../../components/pageContainers/feedContainer/FeedContainer";
+import FeedContainer from "../../containers/feedContainer/FeedContainer";
+import Header from "../../containers/homeStructure/headerContainer";
+import LeftBar from "../../containers/homeStructure/leftBarContainer/LeftBar";
+import RightBar from "../../containers/homeStructure/rightBarContainer/RightBar";
+
 import "./style.css";
 
 export default function Home({ setCreatePostPopup, posts, setChat }) {

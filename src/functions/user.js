@@ -70,3 +70,22 @@ export const getRelationsPageInfos = async (token) => {
     return error.response.data.message;
   }
 };
+
+export const updateprofilePicture = async (url, token) => {
+  try {
+    const { data } = await axios.put(
+      `${process.env.REACT_APP_BACKEND_URL}/update-profile-picture`,
+      {
+        url,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return "ok";
+  } catch (error) {
+    return error.response.data.message;
+  }
+};

@@ -1,0 +1,7 @@
+.post_square {
+  width: 113px;
+  height: 113px;
+  background-color: white;
+  border-radius: 10%;
+  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+}

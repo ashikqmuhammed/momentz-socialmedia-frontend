@@ -4,7 +4,7 @@ import { useEffect, useReducer } from "react";
 import { relationsReducer } from "../../functions/reducers";
 import { getRelationsPageInfos } from "../../functions/user";
 import { useSelector } from "react-redux";
-import Header from "../../components/homeStructure/headerContainer";
+import Header from "../../containers/homeStructure/headerContainer";
 
 export default function Relations({ setChat }) {
   const { user } = useSelector((state) => ({ ...state }));

@@ -1,6 +1,7 @@
 import { useState } from "react";
-import ChatBox from "../../chatComponents/chatBox";
-import ContactBox from "../../chatComponents/contactBox";
+import ChatBox from "../../components/chatComponents/chatBox";
+import ContactBox from "../../components/chatComponents/contactBox";
+
 import "./style.css";
 
 export default function ChatContainer() {

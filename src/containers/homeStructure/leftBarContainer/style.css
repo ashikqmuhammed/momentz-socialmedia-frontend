@@ -84,19 +84,7 @@
   font-weight: 900;
   color: rgb(118, 114, 114);
 }
-.active {
-  border-bottom: 5px solid var(--blue-color);
-  background-color: var(--bg-secondary);
-}
-.active span {
-  color: var(--blue-color) !important;
-}
-.active svg {
-  fill: var(--blue-color) !important;
-}
-.active:hover {
-  background: var(--bg-secondary);
-}
+
 .profile_box_left {
   display: flex;
   align-items: center;

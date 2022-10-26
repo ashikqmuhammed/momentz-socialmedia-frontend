@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import Chat from "./pages/chat";
 import Relations from "./pages/relations";
+import Gallery from "./pages/gallery/Gallery";
 
 function postFetchReducer(state, action) {
   switch (action.type) {
@@ -104,6 +105,7 @@ function App() {
             exact
           />
           <Route path="/chat" element={<Chat />} exact />
+          <Route path="/gallery" element={<Gallery />} exact />
           <Route
             path="/relations"
             element={<Relations setChat={setChat} />}
