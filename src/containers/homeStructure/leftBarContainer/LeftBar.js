@@ -4,7 +4,10 @@ import { useSelector } from "react-redux";
 
 function Tabs({ title, link, pathD, viewBox, page }) {
   return (
-    <NavLink to={link} className={`tabs ${page === title ? "active_tab" : ""}`}>
+    <NavLink
+      to={link}
+      className={`layout_tabs ${page === title ? "active_tab" : ""}`}
+    >
       <svg viewBox={viewBox}>
         <path d={pathD} />
       </svg>
@@ -37,6 +40,22 @@ export default function LeftBar({ page }) {
       viewBox: "0 0 576 512",
     },
   ];
+  const tabs_follow = [
+    {
+      title: "Followers",
+      link: "/followers",
+      pathD:
+        "M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM128 416c0 35.3-28.7 64-64 64s-64-28.7-64-64s28.7-64 64-64s64 28.7 64 64zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z",
+      viewBox: "0 0 448 512",
+    },
+    {
+      title: "Following",
+      link: "/following",
+      pathD:
+        "M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z",
+      viewBox: "0 0 512 512",
+    },
+  ];
   return (
     <div className="left_bar_container">
       <div className="left_wrapper">
@@ -62,7 +81,18 @@ export default function LeftBar({ page }) {
             />
           ))}
         </div>
-        <div className="third"></div>
+        <div className="third">
+          {tabs_follow.map((tab, i) => (
+            <Tabs
+              key={i}
+              title={tab.title}
+              link={tab.link}
+              pathD={tab.pathD}
+              viewBox={tab.viewBox}
+              page={page}
+            />
+          ))}
+        </div>
       </div>
 
       {/* {tabs.map((tab, i) => (
