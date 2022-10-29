@@ -92,6 +92,19 @@ function App() {
                 setCreatePostPopup={setCreatePostPopup}
                 setNewPost={setNewPost}
                 user={user}
+                posts={posts}
+              />
+            }
+          />
+          <Route
+            path="/profile/liked"
+            element={
+              <Profile
+                setCreatePostPopup={setCreatePostPopup}
+                setNewPost={setNewPost}
+                user={user}
+                posts={posts}
+                liked
               />
             }
           />

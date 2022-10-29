@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import PicCroper from "./PicCroper";
 import "./style.css";
 
-export default function ProfileBox() {
+export default function ProfileBox({ profile }) {
   const [edit, setEdit] = useState(false);
   const { user } = useSelector((state) => ({ ...state }));
   const refInput = useRef();
@@ -34,7 +34,7 @@ export default function ProfileBox() {
   return (
     <div className="profile_box">
       <div className="profile_pic_container">
-        <img ref={pRef} src={user.picture} alt="" />
+        <img ref={pRef} src={profile.picture} alt="" />
         <div className="edit_dp_btn hover1">
           <i
             className="camera_filled_icon"
@@ -55,7 +55,7 @@ export default function ProfileBox() {
         {!edit && (
           <div className="data_wrap">
             <div className="profile_name_edit">
-              <span className="name">{`${user?.first_name} ${user?.last_name}`}</span>
+              <span className="name">{`${profile?.first_name} ${profile?.last_name}`}</span>
               <button>Edit</button>
             </div>
             <div className="follow_count">

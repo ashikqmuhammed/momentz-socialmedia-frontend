@@ -15,7 +15,7 @@
   justify-content: center;
   position: relative;
 }
-.profile_container img {
+.profile_pic_container img {
   border-radius: 35%;
   width: 64%;
 }

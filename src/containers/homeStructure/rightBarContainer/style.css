@@ -13,7 +13,7 @@
   flex-direction: column;
 }
 .right_wrapper {
-  width: 100%;
+  width: 95%;
   height: 100%;
   position: relative;
   display: flex;
@@ -28,11 +28,11 @@
   border-radius: 20px;
   position: relative;
   flex-shrink: 0;
-  width: 240px;
+  width: 205px;
 }
 .right_bar_container .right_wrapper div:nth-child(1) {
   margin-top: 20px;
-  height: 565px;
+  height: 520px;
 }
 .right_bar_container .right_wrapper div:nth-child(2) {
   height: 270px;

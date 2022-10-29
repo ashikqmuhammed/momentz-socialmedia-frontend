@@ -1,6 +1,6 @@
 import "./style.css";
 import axios from "axios";
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { profileReducer } from "../../functions/reducers";
@@ -16,7 +16,13 @@ import Header from "../../containers/homeStructure/headerContainer";
 import LeftBar from "../../containers/homeStructure/leftBarContainer/LeftBar";
 import RightBar from "../../containers/homeStructure/rightBarContainer/RightBar";
 
-export default function Profile({ setCreatePostPopup, setNewPost }) {
+export default function Profile({
+  setCreatePostPopup,
+  setNewPost,
+  posts,
+  liked,
+}) {
+  const [tab, setTab] = useState([1, 0, 0]);
   const { username } = useParams();
   const navigate = useNavigate();
   const { user } = useSelector((state) => ({ ...state }));
@@ -30,7 +36,7 @@ export default function Profile({ setCreatePostPopup, setNewPost }) {
 
   useEffect(() => {
     getProfile();
-  }, [userName]);
+  }, [userName, tab]);
 
   var visitor = userName === user.username ? false : true;
 
@@ -39,23 +45,42 @@ export default function Profile({ setCreatePostPopup, setNewPost }) {
       dispatch({
         type: "REQUEST_STARTED",
       });
+      if (tab[1]) {
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/profile/${userName}/likedposts`,
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
 
-      const { data } = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/profile/${userName}`,
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
+        if (data.ok === false) {
+          navigate(`/profile`);
+        } else {
+          dispatch({
+            type: "REQUEST_SUCCESS",
+            payload: data,
+          });
         }
-      );
-
-      if (data.ok === false) {
-        navigate(`/profile`);
       } else {
-        dispatch({
-          type: "REQUEST_SUCCESS",
-          payload: data,
-        });
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/profile/${userName}/ownposts`,
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
+
+        if (data.ok === false) {
+          navigate(`/profile`);
+        } else {
+          dispatch({
+            type: "REQUEST_SUCCESS",
+            payload: data,
+          });
+        }
       }
     } catch (error) {
       dispatch({
@@ -112,7 +137,12 @@ export default function Profile({ setCreatePostPopup, setNewPost }) {
     <div>
       <Header page="profile" />
       <LeftBar />
-      <ProfileContainer />
+      <ProfileContainer
+        tab={tab}
+        setTab={setTab}
+        profile={profile}
+        visitor={visitor}
+      />
       <RightBar />
     </div>
   );
