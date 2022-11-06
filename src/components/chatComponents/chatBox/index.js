@@ -18,7 +18,7 @@ export default function ChatBox({ selectedChat }) {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io(process.env.REACT_APP_BACKEND_URL);
+    socket.current = io("https://lazy-jade-chick-kit.cyclic.app");
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
@@ -146,9 +146,6 @@ export default function ChatBox({ selectedChat }) {
                   </div>
                 </div>
               ))}
-            {messagesLoading && (
-              <PuffLoader className="messages_loading" color="#fff" size={30} />
-            )}
           </div>
           <div className="chat_text_box">
             <input

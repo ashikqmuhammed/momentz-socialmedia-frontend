@@ -1,17 +1,27 @@
 import "./style.css";
+import Cookies from "js-cookie";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import UserMenu from "./UserMenu";
 import { Search } from "../../../svg";
 
-export default function Header({ page, setChat }) {
-  const { user } = useSelector((user) => ({ ...user }));
+export default function Header({ page }) {
+  const { user, darkTheme } = useSelector((user) => ({ ...user }));
   const color = "#65676b";
   const [showSearchMenu, setShowSearchMenu] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [open, setOpen] = useState(false);
-
+  const dispatch = useDispatch();
+  const changeTheme = () => {
+    if (darkTheme) {
+      Cookies.set("darkTheme", false);
+      dispatch({ type: "LIGHT" });
+    } else {
+      Cookies.set("darkTheme", true);
+      dispatch({ type: "DARK" });
+    }
+  };
   return (
     <header>
       <div className="header_left">
@@ -61,6 +71,15 @@ export default function Header({ page, setChat }) {
         )}
       </div>
       <div className="header_right">
+        <div
+          onClick={changeTheme}
+          className={darkTheme ? "dark_mode" : "light_mode"}
+        >
+          <svg viewBox="0 0 512 512">
+            <path d="M448 256c0-106-86-192-192-192V448c106 0 192-86 192-192zm64 0c0 141.4-114.6 256-256 256S0 397.4 0 256S114.6 0 256 0S512 114.6 512 256z" />
+          </svg>
+        </div>
+
         <div className="open_user_menu_large">
           <img
             src={user?.picture}

@@ -67,8 +67,7 @@ export default function RightBar({ page }) {
     <div className="right_bar_container">
       <div className="right_wrapper">
         <div></div>
-        {/* <div></div>
-        <div></div> */}
+     
       </div>
 
       {/* {tabs.map((tab, i) => (

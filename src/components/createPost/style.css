@@ -37,7 +37,7 @@
 } */
 
 .create_post {
-  background: var(--bg-primary);
+  background: var(--wtheme-primary);
   margin-top: 0.1rem;
   width: 100%;
   cursor: pointer;
@@ -48,7 +48,7 @@
   align-items: center;
   gap: 8px;
   padding: 10px 17px 10px 15px;
-  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+  box-shadow: var(--wtheme-shadow1);
   border-radius: 20px;
 }
 .create_post_header img {

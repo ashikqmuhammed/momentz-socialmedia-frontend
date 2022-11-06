@@ -1,0 +1,15 @@
+.single_view {
+  position: absolute;
+  top: 50%;
+  /* bottom: 10%; */
+  right: 15%;
+  left: 15%;
+  display: flex;
+  background-color: white;
+  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+  border-radius: 20px;
+  transform: translateY(-50%);
+}
+.single_right_wrap {
+  width: 50%;
+}

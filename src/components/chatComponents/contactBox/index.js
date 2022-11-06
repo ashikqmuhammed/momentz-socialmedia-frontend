@@ -51,7 +51,7 @@ export default function ContactBox({ setSelectedChat }) {
     <div className="contactBox">
       <div className="wrapper">
         <div className="header">
-          <div className="search">
+          <div className="chat_search">
             <input
               onChange={(e) => setChatSearchTerm(e.target.value)}
               type="text"

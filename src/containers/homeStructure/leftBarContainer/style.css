@@ -1,27 +1,15 @@
 .left_bar_container {
   position: fixed;
   margin-top: 80px;
-  left: 6px;
+  left: 0;
   height: calc(100vh - 80px);
   width: 290px;
   overflow-y: auto;
   color: var(--color-primary);
+  -webkit-user-select: none;
   user-select: none;
-  background-color: var(--bg-primary);
+  background-color: var(--wtheme-primary);
   /* box-shadow: 0 12px 12px var(--shadow-1); */
-  /* background: linear-gradient(
-      -45deg,
-      #3f51b1 0%,
-      #5a55ae 13%,
-      #7b5fac 25%,
-      #8f6aae 38%,
-      #a86aa4 50%,
-      #cc6b8e 62%,
-      #f18271 75%,
-      #f3a469 87%,
-      #f7c978 100%
-    );
-    animation: animate 7.5s ease-in-out infinite; */
   background-size: 400% 400%;
   display: flex;
   flex-direction: column;
@@ -40,23 +28,17 @@
 .left_bar_container .left_wrapper .first,
 .second,
 .third {
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  border-radius: 24px;
+  box-shadow: var(--wtheme-shadow1);
+  border-radius: 20px;
   position: relative;
   flex-shrink: 0;
   width: 205px;
   padding-left: 10px;
 }
+
 .left_bar_container .left_wrapper .first {
-  margin-top: 20px;
   height: 90px;
 }
-/* .left_bar_container .left_wrapper .second {
-  height: 280px;
-} */
-/* .left_bar_container .left_wrapper .third {
-  height: 130px;
-} */
 
 .layout_tabs {
   width: 80%;

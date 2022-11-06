@@ -1,24 +1,18 @@
 import { useSelector } from "react-redux";
 import FeedContainer from "../../containers/feedContainer/FeedContainer";
-import Header from "../../containers/homeStructure/headerContainer";
-import LeftBar from "../../containers/homeStructure/leftBarContainer/LeftBar";
-import RightBar from "../../containers/homeStructure/rightBarContainer/RightBar";
+
 
 import "./style.css";
 
-export default function Home({ setCreatePostPopup, posts, setChat }) {
+export default function Home({ setCreatePostPopup, posts }) {
   const { user } = useSelector((state) => ({ ...state }));
   return (
-    <div className="home">
-      <Header page="home" setChat={setChat} />
-      <LeftBar />
+    <div>
       <FeedContainer
         posts={posts}
         user={user}
         setCreatePostPopup={setCreatePostPopup}
       />
-
-      <RightBar />
     </div>
   );
 }

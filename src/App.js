@@ -8,11 +8,14 @@ import { useEffect, useReducer, useState } from "react";
 import CreatePostPopup from "./components/createPostPopup";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import Chat from "./pages/chat";
-import Relations from "./pages/relations";
-import Gallery from "./pages/gallery/Gallery";
 import Followers from "./pages/followers/Followers";
 import Following from "./pages/following/Following";
+import Header from "./containers/homeStructure/headerContainer";
+import Chat from "./pages/chat/Chat";
+import LeftBar from "./containers/homeStructure/leftBarContainer/LeftBar";
+import RightBar from "./containers/homeStructure/rightBarContainer/RightBar";
+import Explore from "./pages/gallery/Explore";
+import SingleViewPost from "./components/singleViewPost/SingleViewPost";
 
 function postFetchReducer(state, action) {
   switch (action.type) {
@@ -28,14 +31,14 @@ function postFetchReducer(state, action) {
 }
 function App() {
   const [createPostPopup, setCreatePostPopup] = useState(false);
-  const [chat, setChat] = useState(false);
+
   const [newPost, setNewPost] = useState(false);
   const [{ loading, error, posts }, dispatch] = useReducer(postFetchReducer, {
     loading: false,
     error: "",
     posts: [],
   });
-  const { user } = useSelector((state) => ({ ...state }));
+  const { user, darkTheme } = useSelector((state) => ({ ...state }));
 
   useEffect(() => {
     if (user || newPost) {
@@ -63,18 +66,33 @@ function App() {
     }
   };
   return (
-    <div className="app">
-      {createPostPopup && (
-        <CreatePostPopup
-          setNewPost={setNewPost}
-          user={user}
-          setCreatePostPopup={setCreatePostPopup}
-        />
+    <div className={darkTheme ? "dark" : ""}>
+      {user && (
+        <>
+          <Header page="home" />
+          <LeftBar />
+          <RightBar />
+        </>
       )}
-      {chat && <Chat setChat={setChat} user={user} />}
-
       <Routes>
         <Route element={<LoggedInRoutes />}>
+          <Route path="/">
+            <Route
+              index
+              element={
+                <Home setCreatePostPopup={setCreatePostPopup} posts={posts} />
+              }
+            />
+            <Route
+              path="post/:postId"
+              element={
+                <>
+                  {/* <Home setCreatePostPopup={setCreatePostPopup} posts={posts} /> */}
+                  <SingleViewPost />
+                </>
+              }
+            />
+          </Route>
           <Route
             path="/profile/:username"
             element={
@@ -108,32 +126,24 @@ function App() {
               />
             }
           />
-          <Route
-            path="/"
-            element={
-              <Home
-                setCreatePostPopup={setCreatePostPopup}
-                setChat={setChat}
-                posts={posts}
-              />
-            }
-            exact
-          />
-          <Route path="/chat" element={<Chat />} exact />
-          <Route path="/followers" element={<Followers />} exact />
-          <Route path="/following" element={<Following />} exact />
-          <Route path="/gallery" element={<Gallery />} exact />
 
-          <Route
-            path="/relations"
-            element={<Relations setChat={setChat} />}
-            exact
-          />
+          <Route path="/chat" element={<Chat />} exact />
+          <Route path="/followers" element={<Followers />} />
+          <Route path="/following" element={<Following />} />
+          <Route path="/explore" element={<Explore />} />
+          <Route path="*" element={<h1 className="testing">Not found</h1>} />
         </Route>
         <Route element={<NonLoggedInRoutes />}>
           <Route path="/login" element={<Login />} exact />
         </Route>
       </Routes>
+      {createPostPopup && (
+        <CreatePostPopup
+          setNewPost={setNewPost}
+          user={user}
+          setCreatePostPopup={setCreatePostPopup}
+        />
+      )}
     </div>
   );
 }
