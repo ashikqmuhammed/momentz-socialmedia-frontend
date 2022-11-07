@@ -38,6 +38,9 @@ export default function LoginForm({ setVisible }) {
         {
           email,
           password,
+        },
+        {
+          withCredentials: true,
         }
       );
       dispatch({ type: "LOGIN", payload: data });
