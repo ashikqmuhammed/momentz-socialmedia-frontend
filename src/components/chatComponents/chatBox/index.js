@@ -18,7 +18,7 @@ export default function ChatBox({ selectedChat }) {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io("http://localhost:5000");
+    socket.current = io(process.env.SOCKET);
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
