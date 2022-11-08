@@ -2,7 +2,7 @@
   /* height: 100px; */
   width: 45%;
   border-radius: 20px;
-  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+  box-shadow: var(--wtheme-shadow1);
   display: flex;
   align-items: center;
 }

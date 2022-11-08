@@ -38,9 +38,6 @@ export default function LoginForm({ setVisible }) {
         {
           email,
           password,
-        },
-        {
-          withCredentials: true,
         }
       );
       dispatch({ type: "LOGIN", payload: data });
@@ -88,7 +85,7 @@ export default function LoginForm({ setVisible }) {
                   onChange={handleLoginChange}
                   bottom
                 />
-                <button type="submit" className="blue_btn">
+                <button type="submit" className="login_btn">
                   Log In
                 </button>
               </Form>

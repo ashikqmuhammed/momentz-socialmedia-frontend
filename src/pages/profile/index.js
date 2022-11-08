@@ -27,6 +27,7 @@ export default function Profile({
   useEffect(() => {
     getProfile();
   }, [userName, tab]);
+  console.log(profile)
 
   var visitor = userName === user.username ? false : true;
 

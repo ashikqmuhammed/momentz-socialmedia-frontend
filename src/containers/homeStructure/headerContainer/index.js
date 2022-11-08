@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import UserMenu from "./UserMenu";
 import { Search } from "../../../svg";
+import SearchMenu from "./SearchMenu";
 
 export default function Header({ page }) {
   const { user, darkTheme } = useSelector((user) => ({ ...user }));

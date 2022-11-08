@@ -8,7 +8,7 @@ export default function ProfileContainer({ profile, visitor, setTab, tab }) {
     <div className="profile_container scrollbar">
       <div className="profile_wrapper">
         <div className="profile_topbox">
-          <ProfileBox profile={profile} />
+          <ProfileBox profile={profile} visitor={visitor}/>
           <ProfileTabs setTab={setTab} tab={tab} visitor={visitor} />
         </div>
 

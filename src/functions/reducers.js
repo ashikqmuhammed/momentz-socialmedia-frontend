@@ -130,4 +130,3 @@ export function galleryReducer(state, action) {
       return state;
   }
 }
-

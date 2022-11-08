@@ -20,7 +20,7 @@
   padding: 45px 20px 120px 20px;
   display: flex;
   /* flex-direction: column; */
-  gap: 10px;
+  gap: 20px;
   flex-wrap: wrap;
   /* justify-content: space-evenly; */
 }

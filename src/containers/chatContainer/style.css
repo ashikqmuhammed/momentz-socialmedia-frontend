@@ -4,8 +4,9 @@
   left: 290px;
   right: 290px;
   height: calc(100vh - 80px);
-  /* width: calc(100vh - 336px); */
+  width: calc(100vh - 336px);
   color: var(--color-primary);
+  -webkit-user-select: none;
   user-select: none;
   background-size: 400% 400%;
   display: flex;
@@ -13,7 +14,8 @@
   width: inherit;
   z-index: 999999999;
   padding: 25px;
-  border-radius: 20px;
+  /* border-radius: 20px; */
+  background-color: var(--wtheme-primary);
 }
 .chat_wrapper {
   position: relative;

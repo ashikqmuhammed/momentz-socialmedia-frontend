@@ -157,7 +157,15 @@ body {
 .scrollbar::-webkit-scrollbar-thumb {
   background: #aeaeafa1;
   border-radius: 5px;
+  height: 10px;
 }
+.scrollbar::-webkit-scrollbar-track-piece:end {
+  margin-bottom: 400px;
+}
+.scrollbar::-webkit-scrollbar-track-piece:start {
+  margin-top: 20px;
+}
+
 /*----Scrollbar----*/
 
 /*---Circles------*/
