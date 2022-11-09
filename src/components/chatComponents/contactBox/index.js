@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { chatContactsReducer } from "../../../functions/reducers";
 import BounceLoader from "react-spinners/BounceLoader";
@@ -8,7 +8,7 @@ let typingTimer;
 const interval = 1000;
 export default function ContactBox({ setSelectedChat }) {
   let { user } = useSelector((state) => ({ ...state }));
-  const [chatSearchTerm, setChatSearchTerm] = useState("");
+  const searchRef = useRef();
   const [{ loading, error, contacts }, dispatch] = useReducer(
     chatContactsReducer,
     {
@@ -20,8 +20,8 @@ export default function ContactBox({ setSelectedChat }) {
 
   const contactSearch = async () => {
     dispatch({ type: "CHAT_CONTACTS_REQUEST" });
-    if (chatSearchTerm) {
-      const returnObj = await chatSearch(chatSearchTerm, user.token);
+    if (searchRef.current.value) {
+      const returnObj = await chatSearch(searchRef.current.value, user.token);
       if (returnObj?.status === "ok") {
         dispatch({ type: "CHAT_CONTACTS_SUCCESS", payload: returnObj.data });
       } else {
@@ -53,9 +53,8 @@ export default function ContactBox({ setSelectedChat }) {
         <div className="header">
           <div className="chat_search">
             <input
-              onChange={(e) => setChatSearchTerm(e.target.value)}
+              ref={searchRef}
               type="text"
-              value={chatSearchTerm}
               placeholder="Search buddies..."
               onKeyDown={() => {
                 clearTimeout(typingTimer);
@@ -94,7 +93,7 @@ export default function ContactBox({ setSelectedChat }) {
                 <span>{`${contact?.first_name} ${contact?.last_name}`}</span>
               </div>
             ))}
-            {!loading &&
+          {!loading &&
             contacts?.map((contact, i) => (
               <div
                 key={i}

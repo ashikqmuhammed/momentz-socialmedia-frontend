@@ -73,3 +73,9 @@
 .active_tab svg {
   fill: var(--blue-color);
 }
+
+@media all and (max-width: 480px) and (min-width: 320px) {
+  .right_bar_container{
+    display: none !important;
+  }
+}

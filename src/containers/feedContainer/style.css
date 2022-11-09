@@ -31,3 +31,8 @@
   align-items: center;
   /* transform: translateX(-50%); */
 }
+@media all and (max-width: 480px) and (min-width: 320px) {
+  .feed_container{
+    position: static;
+  }
+}
