@@ -305,3 +305,14 @@
 /* .single_view_header {
   width: 50%;
 } */
+
+@media all and (max-width: 480px) and (min-width: 320px) {
+  .grid_1 {
+    min-height: 182px !important;
+    max-height: 0 !important;
+  }
+  .grid_1 img {
+    min-height: 0;
+    max-height: 240px;
+  }
+}
