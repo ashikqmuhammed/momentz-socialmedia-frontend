@@ -4,7 +4,7 @@
 Social media app using React. It can be installed as PWA on any devices.
 ## Demo
 
-www.momentz.vercel.app
+momentz.vercel.app
 
 
 ## Tech Stack
