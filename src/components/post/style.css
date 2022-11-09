@@ -260,8 +260,9 @@
   font-size: 14px;
   font-weight: 900;
   cursor: pointer;
-  background-color: var(--wthem-tertiary);
-  color: var(--wtheme-tertiary);
+  background-color: var(--wtheme-secondary);
+  color: var(--wtheme-primary);
+  /* border: 3px solid #b0b3b8; */
 }
 
 .comment_display_header {
@@ -314,5 +315,29 @@
   .grid_1 img {
     min-height: 0;
     max-height: 240px;
+  }
+  .like_comment_div {
+    width: 65%;
+  }
+  .comment_box {
+    display: none;
+  }
+  .comment_display {
+    padding: 0px 12px 12px 12px;
+  }
+}
+
+element.style {
+}
+@media (max-width: 480px) and (min-width: 320px) {
+  .like_comment_div {
+    width: 100%;
+    margin-left: 0;
+    justify-content: space-evenly;
+  }
+  .like_comment_div span {
+    width: 40%;
+    display: flex;
+    justify-content: center;
   }
 }
