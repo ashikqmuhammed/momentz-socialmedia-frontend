@@ -315,4 +315,8 @@ header {
   .open_user_menu {
     display: none !important;
   }
+  .dark_mode,.light_mode,.open_user_menu_large{
+    display: none;
+  }
+  
 }

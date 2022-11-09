@@ -45,7 +45,27 @@ export default function Header({ page }) {
           <Search color={color} />
           <input type="text" placeholder="Search Moments" />
         </div>
+      </div>
+      <div className="header_right">
+        <div
+          onClick={changeTheme}
+          className={darkTheme ? "dark_mode" : "light_mode"}
+        >
+          <svg viewBox="0 0 512 512">
+            <path d="M448 256c0-106-86-192-192-192V448c106 0 192-86 192-192zm64 0c0 141.4-114.6 256-256 256S0 397.4 0 256S114.6 0 256 0S512 114.6 512 256z" />
+          </svg>
+        </div>
 
+        <div className="open_user_menu_large">
+          <img
+            src={user?.picture}
+            alt="profile pic"
+            onClick={() => {
+              setShowUserMenu((prev) => !prev);
+            }}
+          />
+          {showUserMenu && <UserMenu />}
+        </div>
         {!open && (
           <svg
             className="hamburger"
@@ -70,27 +90,6 @@ export default function Header({ page }) {
             <path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z" />
           </svg>
         )}
-      </div>
-      <div className="header_right">
-        <div
-          onClick={changeTheme}
-          className={darkTheme ? "dark_mode" : "light_mode"}
-        >
-          <svg viewBox="0 0 512 512">
-            <path d="M448 256c0-106-86-192-192-192V448c106 0 192-86 192-192zm64 0c0 141.4-114.6 256-256 256S0 397.4 0 256S114.6 0 256 0S512 114.6 512 256z" />
-          </svg>
-        </div>
-
-        <div className="open_user_menu_large">
-          <img
-            src={user?.picture}
-            alt="profile pic"
-            onClick={() => {
-              setShowUserMenu((prev) => !prev);
-            }}
-          />
-          {showUserMenu && <UserMenu />}
-        </div>
       </div>
     </header>
   );
