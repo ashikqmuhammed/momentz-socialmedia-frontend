@@ -1,0 +1,26 @@
+.bottom_bar_container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 92vh;
+    background-color: white;
+    z-index: 9999999999;
+    display: flex;
+}
+.bottom_wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-top: 1px solid #efefef;
+}
+.bottom_tab svg{
+    width: 30px;
+    height: 30px;
+}
+.bottom_tab img{
+    width:30px;
+    border-radius: 20px;
+}

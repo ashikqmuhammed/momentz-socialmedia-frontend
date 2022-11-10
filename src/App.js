@@ -16,6 +16,7 @@ import LeftBar from "./containers/homeStructure/leftBarContainer/LeftBar";
 import RightBar from "./containers/homeStructure/rightBarContainer/RightBar";
 import Explore from "./pages/gallery/Explore";
 import SingleViewPost from "./components/singleViewPost/SingleViewPost";
+import BottomBar from "./containers/homeStructure/bottomBar/BottomBar";
 
 function postFetchReducer(state, action) {
   switch (action.type) {
@@ -72,6 +73,7 @@ function App() {
           <Header page="home" />
           <LeftBar />
           <RightBar />
+          <BottomBar/>
         </>
       )}
       <Routes>
