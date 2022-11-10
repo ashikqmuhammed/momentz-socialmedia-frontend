@@ -28,7 +28,7 @@ export default function Header({ page }) {
       <div className="header_left">
         <Link to="/" className="header_logo">
           <div className="circle">
-            <img alt="logo" src="./icons/favicon.png" />
+            <img alt="logo" src="./icons/favicon.svg" />
           </div>
         </Link>
         <Link to="/">

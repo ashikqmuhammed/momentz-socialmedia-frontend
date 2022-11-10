@@ -78,7 +78,7 @@ header {
   transform: translateY(1px) translateX(-1px);
 } */
 .hamburger {
-  width: 40px;
+  width: 35px;
   color: #b0b3b8;
   fill: #b0b3b8;
 }
@@ -317,6 +317,9 @@ header {
   }
   .dark_mode,.light_mode,.open_user_menu_large{
     display: none;
+  }
+  .header_logo{
+    margin-left: 17px;
   }
   
 }
