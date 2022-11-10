@@ -17,6 +17,7 @@ import RightBar from "./containers/homeStructure/rightBarContainer/RightBar";
 import Explore from "./pages/gallery/Explore";
 import SingleViewPost from "./components/singleViewPost/SingleViewPost";
 import BottomBar from "./containers/homeStructure/bottomBar/BottomBar";
+import { useMediaQuery } from "react-responsive";
 
 function postFetchReducer(state, action) {
   switch (action.type) {
@@ -32,7 +33,10 @@ function postFetchReducer(state, action) {
 }
 function App() {
   const [createPostPopup, setCreatePostPopup] = useState(false);
-
+  const mobileView = useMediaQuery({
+    query: "(max-width: 480px)",
+  });
+  console.log(mobileView);
   const [newPost, setNewPost] = useState(false);
   const [{ loading, error, posts }, dispatch] = useReducer(postFetchReducer, {
     loading: false,
@@ -73,7 +77,7 @@ function App() {
           <Header page="home" />
           <LeftBar />
           <RightBar />
-          <BottomBar/>
+          {mobileView && <BottomBar />}
         </>
       )}
       <Routes>

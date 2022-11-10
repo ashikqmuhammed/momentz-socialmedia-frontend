@@ -20,7 +20,8 @@
     width: 30px;
     height: 30px;
 }
-.bottom_tab img{
-    width:30px;
-    border-radius: 20px;
+
+.bottom_tab img {
+    width: 30px;
+    border-radius: 50%;
 }

@@ -7,7 +7,6 @@ export default function FeedContainer({ setCreatePostPopup, user, posts }) {
     <div className="feed_container scrollbar">
       <div className="home_wrapper">
         <div className="posts_wrapper">
-          <CreatePost user={user} setCreatePostPopup={setCreatePostPopup} />
           <div className="posts">
             {posts?.map((post) => {
               return <Post key={post._id} post={post} />;
