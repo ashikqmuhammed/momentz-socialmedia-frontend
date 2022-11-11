@@ -114,7 +114,7 @@ body {
   /* border-bottom: 5px solid var(--blue-color); */
   /* background-color: var(--bg-secondary); */
 }
-/* .active span,
+.active span,
 .active .name {
   color: black !important;
   font-weight: 900;
@@ -125,7 +125,7 @@ body {
 }
 .active img {
   border: 2px solid black;
-} */
+}
 /* .active:hover {
   background: var(--bg-secondary);
 } */

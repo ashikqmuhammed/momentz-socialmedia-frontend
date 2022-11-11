@@ -88,7 +88,10 @@
     /* background-color: var(--bg-third); */
     /* border-radius: 10px 0px 0px 10px; */
   }
-  .contact{
+  .contact {
     height: 80px;
+  }
+  .chat_body {
+    height: 77vh;
   }
 }
