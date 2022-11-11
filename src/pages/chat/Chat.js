@@ -1,11 +1,11 @@
+import { useLayoutEffect, useState } from "react";
 import ChatContainer from "../../containers/chatContainer/ChatContainer";
 
+export default function Chat({ setHideHeader, smallView }) {
 
-
-export default function Chat() {
   return (
     <div>
-      <ChatContainer />
+      <ChatContainer setHideHeader={setHideHeader} smallView={smallView} />
     </div>
   );
 }

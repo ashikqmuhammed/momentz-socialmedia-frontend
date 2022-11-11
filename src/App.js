@@ -36,7 +36,10 @@ function App() {
   const mobileView = useMediaQuery({
     query: "(max-width: 480px)",
   });
-  console.log(mobileView);
+  const smallView = useMediaQuery({
+    query: "(max-width: 768px)",
+  });
+  const [hideHeader, setHideHeader] = useState(false);
   const [newPost, setNewPost] = useState(false);
   const [{ loading, error, posts }, dispatch] = useReducer(postFetchReducer, {
     loading: false,
@@ -74,7 +77,7 @@ function App() {
     <div className={darkTheme ? "dark" : ""}>
       {user && (
         <>
-          <Header page="home" />
+          {!hideHeader&&<Header page="home" />}
           <LeftBar />
           <RightBar />
           {mobileView && <BottomBar />}
@@ -133,7 +136,13 @@ function App() {
             }
           />
 
-          <Route path="/chat" element={<Chat />} exact />
+          <Route
+            path="/chat"
+            element={
+              <Chat setHideHeader={setHideHeader} smallView={smallView} />
+            }
+            exact
+          />
           <Route path="/followers" element={<Followers />} />
           <Route path="/following" element={<Following />} />
           <Route path="/explore" element={<Explore />} />

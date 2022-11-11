@@ -24,3 +24,9 @@
   margin-bottom: 75px;
   background-color: var(--wtheme-primary);
 }
+@media all and (max-width: 768px) and (min-width: 320px) {
+ .gallery_container{
+  left: 0;
+  right: 0;
+ }
+}
