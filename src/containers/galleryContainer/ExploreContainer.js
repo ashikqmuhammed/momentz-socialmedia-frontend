@@ -44,34 +44,6 @@ export default function ExploreContainer() {
             imageSrc={post.images[0].url}
           />
         ))}
-        {galleryPosts.map((post) => (
-          <PostSquare
-            key={post._id}
-            post={post}
-            imageSrc={post.images[0].url}
-          />
-        ))}
-        {galleryPosts.map((post) => (
-          <PostSquare
-            key={post._id}
-            post={post}
-            imageSrc={post.images[0].url}
-          />
-        ))}
-        {galleryPosts.map((post) => (
-          <PostSquare
-            key={post._id}
-            post={post}
-            imageSrc={post.images[0].url}
-          />
-        ))}
-        {galleryPosts.map((post) => (
-          <PostSquare
-            key={post._id}
-            post={post}
-            imageSrc={post.images[0].url}
-          />
-        ))}
       </div>
     </div>
   );
