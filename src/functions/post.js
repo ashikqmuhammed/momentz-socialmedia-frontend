@@ -1,7 +1,5 @@
 import axios from "axios";
 
-
-
 export const createPost = async (
   type,
   background,
@@ -11,7 +9,7 @@ export const createPost = async (
   token
 ) => {
   try {
-    await axios.post(
+    const { data } = await axios.post(
       `${process.env.REACT_APP_BACKEND_URL}/create-post`,
       {
         type,
@@ -26,7 +24,7 @@ export const createPost = async (
         },
       }
     );
-    return "ok";
+    return { status: "ok", data };
   } catch (error) {
     return error.response.data.message;
   }
@@ -64,5 +62,25 @@ export const galleryPostsFn = async (token) => {
     return { status: "ok", data };
   } catch (error) {
     return error.response.data.message;
+  }
+};
+
+export const getAllPosts = async (dispatch, user) => {
+  try {
+    dispatch({ type: "REQUEST_STARTED" });
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/get-following-posts`,
+      {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
+    dispatch({ type: "REQUEST_SUCCESS", payload: data });
+  } catch (error) {
+    dispatch({
+      type: "REQUEST_FAILURE",
+      payload: error.response.data.message,
+    });
   }
 };

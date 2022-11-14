@@ -1,12 +1,17 @@
 import Cookies from "js-cookie";
-import React from "react";
+import React, { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { useClickOutside } from "../../../helpers/useClickOutside";
 
-export default function UserMenu() {
+export default function UserMenu({setShowUserMenu}) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => ({ ...state }));
+  const menuRef=useRef()
+  useClickOutside(menuRef, () => {
+    setShowUserMenu(false)
+  });
   const logout = () => {
     Cookies.set("user", "");
     dispatch({
@@ -15,7 +20,7 @@ export default function UserMenu() {
     navigate("/login");
   };
   return (
-    <div className="user_menu">
+    <div className="user_menu" ref={menuRef}>
       <div className="user_menu_box">
         <Link className="user_menu_tabs hover1" to="/profile">
           <img src={user?.picture} alt="" />
@@ -26,8 +31,8 @@ export default function UserMenu() {
             </span>
           </div>
         </Link>
-        <div onClick={logout} className="user_menu_tabs hover3">
-          <div className="small_circle">
+        <div onClick={logout} className="user_menu_tabs">
+          <div className="logout_circle">
             <i className="logout_filled_icon"></i>
           </div>
           <span>Logout</span>

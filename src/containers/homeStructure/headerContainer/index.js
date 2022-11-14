@@ -1,19 +1,28 @@
 import "./style.css";
 import Cookies from "js-cookie";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import UserMenu from "./UserMenu";
 import { Search } from "../../../svg";
-import SearchMenu from "./SearchMenu";
+import { search } from "../../../functions/user";
+import { useClickOutside } from "../../../helpers/useClickOutside";
 
-export default function Header({ page }) {
+let typingTimer;
+export default function Header({ page, setCreatePostPopup }) {
   const { user, darkTheme } = useSelector((user) => ({ ...user }));
   const color = "#65676b";
   const [showSearchMenu, setShowSearchMenu] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [open, setOpen] = useState(false);
+  const searchRef = useRef();
+  const resultRef=useRef()
   const dispatch = useDispatch();
+  const [results, setResults] = useState([]);
+  useClickOutside(resultRef,()=>{
+    setResults([])
+  })
+
   const changeTheme = () => {
     if (darkTheme) {
       Cookies.set("darkTheme", false);
@@ -23,6 +32,15 @@ export default function Header({ page }) {
       dispatch({ type: "DARK" });
     }
   };
+  const userSearch = async () => {
+    if (searchRef.current.value) {
+      const res = await search(searchRef.current.value, user.token);
+      setResults(res);
+    }else{
+      setResults([])
+    }
+  };
+  console.log(results);
   return (
     <header>
       <div className="header_left">
@@ -43,10 +61,52 @@ export default function Header({ page }) {
           }}
         >
           <Search color={color} />
-          <input type="text" placeholder="Search Moments" />
+          <input
+            ref={searchRef}
+            onKeyDown={() => {
+              clearTimeout(typingTimer);
+            }}
+            onKeyUp={() => {
+              clearTimeout(typingTimer);
+              typingTimer = setTimeout(() => {
+                userSearch();
+              }, 1000);
+            }}
+            type="text"
+            placeholder="Search buddies..."
+          />
+        </div>
+
+        <div ref={resultRef}  className="search_results">
+          <div className="search_results_box">
+            {results.map((user) => (
+              <Link
+                to={`/profile/${user.username}`}
+                className="search_results_profile"
+              >
+                <img src={user?.picture} alt="" />
+                <div>
+                  <span>
+                    {user?.first_name}
+                    {user?.last_name}
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
       <div className="header_right">
+        <div
+          onClick={() => {
+            setCreatePostPopup(true);
+          }}
+          className={darkTheme ? "dark_mode" : "light_mode"}
+        >
+          <svg viewBox="0 0 512 512">
+            <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z" />
+          </svg>
+        </div>
         <div
           onClick={changeTheme}
           className={darkTheme ? "dark_mode" : "light_mode"}
@@ -61,10 +121,10 @@ export default function Header({ page }) {
             src={user?.picture}
             alt="profile pic"
             onClick={() => {
-              setShowUserMenu((prev) => !prev);
+              setShowUserMenu(true);
             }}
           />
-          {showUserMenu && <UserMenu />}
+          {showUserMenu && <UserMenu setShowUserMenu={setShowUserMenu} />}
         </div>
         {!open && (
           <svg

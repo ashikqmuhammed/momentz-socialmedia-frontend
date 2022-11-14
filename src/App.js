@@ -18,19 +18,9 @@ import Explore from "./pages/gallery/Explore";
 import SingleViewPost from "./components/singleViewPost/SingleViewPost";
 import BottomBar from "./containers/homeStructure/bottomBar/BottomBar";
 import { useMediaQuery } from "react-responsive";
+import { postFetchReducer } from "./functions/reducers";
+import { getAllPosts } from "./functions/post";
 
-function postFetchReducer(state, action) {
-  switch (action.type) {
-    case "REQUEST_STARTED":
-      return { ...state, loading: true, error: "" };
-    case "REQUEST_SUCCESS":
-      return { ...state, loading: false, error: "", posts: action.payload };
-    case "REQUEST_FAILURE":
-      return { ...state, loading: false, error: action.payload };
-    default:
-      return state;
-  }
-}
 function App() {
   const [createPostPopup, setCreatePostPopup] = useState(false);
   const mobileView = useMediaQuery({
@@ -40,7 +30,6 @@ function App() {
     query: "(max-width: 768px)",
   });
   const [hideHeader, setHideHeader] = useState(false);
-  const [newPost, setNewPost] = useState(false);
   const [{ loading, error, posts }, dispatch] = useReducer(postFetchReducer, {
     loading: false,
     error: "",
@@ -49,35 +38,18 @@ function App() {
   const { user, darkTheme } = useSelector((state) => ({ ...state }));
 
   useEffect(() => {
-    if (user || newPost) {
-      getAllPosts();
+    if (user) {
+      getAllPosts(dispatch, user);
     }
-  }, [newPost, user]);
+  }, [user]);
 
-  const getAllPosts = async () => {
-    try {
-      dispatch({ type: "REQUEST_STARTED" });
-      const { data } = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/get-all-posts`,
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
-      dispatch({ type: "REQUEST_SUCCESS", payload: data });
-    } catch (error) {
-      dispatch({
-        type: "REQUEST_FAILURE",
-        payload: error.response.data.message,
-      });
-    }
-  };
   return (
     <div className={darkTheme ? "dark" : ""}>
       {user && (
         <>
-          {!hideHeader&&<Header page="home" />}
+          {!hideHeader && (
+            <Header setCreatePostPopup={setCreatePostPopup} page="home" />
+          )}
           <LeftBar />
           <RightBar />
           {mobileView && <BottomBar />}
@@ -86,12 +58,7 @@ function App() {
       <Routes>
         <Route element={<LoggedInRoutes />}>
           <Route path="/">
-            <Route
-              index
-              element={
-                <Home setCreatePostPopup={setCreatePostPopup} posts={posts} />
-              }
-            />
+            <Route index element={<Home posts={posts} />} />
             <Route
               path="post/:postId"
               element={
@@ -105,11 +72,7 @@ function App() {
           <Route
             path="/profile/:username"
             element={
-              <Profile
-                setCreatePostPopup={setCreatePostPopup}
-                setNewPost={setNewPost}
-                user={user}
-              />
+              <Profile setCreatePostPopup={setCreatePostPopup} user={user} />
             }
           />
           <Route
@@ -117,7 +80,6 @@ function App() {
             element={
               <Profile
                 setCreatePostPopup={setCreatePostPopup}
-                setNewPost={setNewPost}
                 user={user}
                 posts={posts}
               />
@@ -128,7 +90,6 @@ function App() {
             element={
               <Profile
                 setCreatePostPopup={setCreatePostPopup}
-                setNewPost={setNewPost}
                 user={user}
                 posts={posts}
                 liked
@@ -154,8 +115,9 @@ function App() {
       </Routes>
       {createPostPopup && (
         <CreatePostPopup
-          setNewPost={setNewPost}
           user={user}
+          dispatch={dispatch}
+          posts={posts}
           setCreatePostPopup={setCreatePostPopup}
         />
       )}

@@ -8,7 +8,6 @@ import ProfileContainer from "../../containers/profileContainer/ProfileContainer
 
 export default function Profile({
   setCreatePostPopup,
-  setNewPost,
   posts,
   liked,
 }) {

@@ -1,3 +1,16 @@
+export function postFetchReducer(state, action) {
+  switch (action.type) {
+    case "REQUEST_STARTED":
+      return { ...state, loading: true, error: "" };
+    case "REQUEST_SUCCESS":
+      return { ...state, loading: false, error: "", posts: action.payload };
+    case "REQUEST_FAILURE":
+      return { ...state, loading: false, error: action.payload };
+    default:
+      return state;
+  }
+}
+
 export function postsReducer(state, action) {
   switch (action.type) {
     case "REQUEST_STARTED":

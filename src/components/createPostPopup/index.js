@@ -13,7 +13,8 @@ import { uploadImages } from "../../functions/uploadImages";
 export default function CreatePostPopup({
   setCreatePostPopup,
   user,
-  setNewPost,
+  dispatch,
+  posts,
 }) {
   const [text, setText] = useState("");
   const [showPrev, setShowPrev] = useState(false);
@@ -37,11 +38,14 @@ export default function CreatePostPopup({
         user.token
       );
       setLoading(false);
-      if (response === "ok") {
+      if (response.status === "ok") {
         setText("");
         setBackground("");
         setCreatePostPopup(false);
-        setNewPost((prev) => !prev);
+        dispatch({
+          type: "REQUEST_SUCCESS",
+          payload: [response.data, ...posts],
+        });
       } else {
         setError(response);
       }
@@ -66,10 +70,10 @@ export default function CreatePostPopup({
         user.token
       );
       setLoading(false);
-      if (response === "ok") {
+      if (response.status === "ok") {
         setText("");
         setCreatePostPopup(false);
-        setNewPost((prev) => !prev);
+        dispatch({ type: "REQUEST_SUCCESS", payload:[response?.data,...posts] });
       } else {
         setError(response);
       }
@@ -84,10 +88,13 @@ export default function CreatePostPopup({
         user.token
       );
       setLoading(false);
-      if (response === "ok") {
+      if (response.status === "ok") {
         setText("");
         setCreatePostPopup(false);
-        setNewPost((prev) => !prev);
+        dispatch({
+          type: "REQUEST_SUCCESS",
+          payload: [response.data, ...posts],
+        });
       } else {
         setError(response);
       }
