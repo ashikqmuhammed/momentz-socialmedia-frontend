@@ -93,24 +93,6 @@ export default function ContactBox({ setSelectedChat }) {
                 <span>{`${contact?.first_name} ${contact?.last_name}`}</span>
               </div>
             ))}
-          {!loading &&
-            contacts?.map((contact, i) => (
-              <div
-                key={i}
-                className="contact"
-                onClick={() => {
-                  setSelectedChat({
-                    id: contact._id,
-                    picture: contact.picture,
-                    first_name: contact.first_name,
-                    last_name: contact.last_name,
-                  });
-                }}
-              >
-                <img src={contact?.picture} alt="" />
-                <span>{`${contact?.first_name} ${contact?.last_name}`}</span>
-              </div>
-            ))}
         </div>
       </div>
     </div>
