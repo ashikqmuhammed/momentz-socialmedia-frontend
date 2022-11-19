@@ -8,7 +8,7 @@ let typingTimer;
 const interval = 1000;
 export default function ContactBox({ setSelectedChat }) {
   let { user } = useSelector((state) => ({ ...state }));
-  const searchRef = useRef();
+  const chatSearchRef = useRef();
   const [{ loading, error, contacts }, dispatch] = useReducer(
     chatContactsReducer,
     {
@@ -20,8 +20,8 @@ export default function ContactBox({ setSelectedChat }) {
 
   const contactSearch = async () => {
     dispatch({ type: "CHAT_CONTACTS_REQUEST" });
-    if (searchRef.current.value) {
-      const returnObj = await chatSearch(searchRef.current.value, user.token);
+    if (chatSearchRef.current.value) {
+      const returnObj = await chatSearch(chatSearchRef.current.value, user.token);
       if (returnObj?.status === "ok") {
         dispatch({ type: "CHAT_CONTACTS_SUCCESS", payload: returnObj.data });
       } else {
@@ -53,7 +53,7 @@ export default function ContactBox({ setSelectedChat }) {
         <div className="header">
           <div className="chat_search">
             <input
-              ref={searchRef}
+              ref={chatSearchRef}
               type="text"
               placeholder="Search buddies..."
               onKeyDown={() => {
